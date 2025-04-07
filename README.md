@@ -24,7 +24,7 @@
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seuusuario/horizonte.com.br.git
+   git clone https://github.com/Mateusdutra03/horizonte.git
    ```
 2. Acesse a pasta do projeto:
    ```bash
