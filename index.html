@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizonte.com.br: Descubra produtos, tecnologia, entretenimento e muito mais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-belt">
+            <div class="logo">
+                <a href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="50" viewBox="0 0 240 100">
+                      <!-- Fundo gradiente -->
+                      <defs>
+                        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#3498db" />
+                          <stop offset="100%" style="stop-color:#2c3e50" />
+                        </linearGradient>
+                      </defs>
+                      
+                      <!-- Forma de horizonte montanhoso -->
+                      <path d="M20 70 L50 40 L80 60 L110 30 L140 50 L170 20 L220 70" 
+                            stroke="white" stroke-width="3" fill="none" />
+                      
+                      <!-- Sol estilizado -->
+                      <circle cx="170" cy="20" r="12" fill="#f39c12" />
+                      
+                      <!-- Texto do logo -->
+                      <text x="50" y="90" font-family="Montserrat, sans-serif" font-size="24" font-weight="700" fill="white">HORIZONTE</text>
+                      
+                      <!-- Background retângulo arredondado -->
+                      <rect x="5" y="5" width="230" height="90" rx="10" ry="10" fill="url(#bgGradient)" stroke="#2c3e50" stroke-width="2" opacity="0.3" z-index="-1" />
+                    </svg>
+                </a>
+            </div>
+            <div class="nav-search">
+                <select>
+                    <option>Todas Categorias</option>
+                </select>
+                <input type="text" placeholder="O que você está procurando hoje?">
+                <button>🔍</button>
+            </div>
+            <div class="nav-tools">
+                <div class="nav-item">
+                    <a href="login.html" class="nav-link">
+                        <span class="nav-line-1">Bem-vindo</span>
+                        <span class="nav-line-2">Entrar / Cadastrar</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="pedidos.html" class="nav-link">
+                        <span class="nav-line-1">Meus</span>
+                        <span class="nav-line-2">Pedidos</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="horizonte-plus.html" class="nav-link">
+                        <span class="nav-line-1">Assine</span>
+                        <span class="nav-line-2">Horizonte+</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="carrinho.html" class="nav-link">
+                        <span>🛒 Carrinho</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="subnav">
+            <a href="categorias.html">Categorias</a>
+            <a href="ofertas.html">Ofertas Exclusivas</a>
+            <a href="novidades.html">Novidades</a>
+            <a href="colecoes.html">Coleções</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="horizonte-plus.html">Horizonte+</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <div class="hero" onclick="window.location.href='ofertas-especiais.html'"></div>
+
+    <!-- Main Content - Card Grid -->
+    <div class="card-grid">
+        <div class="card">
+            <h2>Tecnologia & Inovação</h2>
+            <div class="card-img" onclick="window.location.href='categoria-tecnologia.html'">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=400&auto=format&fit=crop" alt="Tecnologia">
+            </div>
+            <a href="categoria-tecnologia.html" class="card-link">Explorar produtos</a>
+        </div>
+        <div class="card">
+            <h2>Descontos Imperdíveis</h2>
+            <div class="card-img" onclick="window.location.href='promocoes.html'">
+                <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?q=80&w=400&auto=format&fit=crop" alt="Ofertas">
+            </div>
+            <a href="promocoes.html" class="card-link">Ver todas as ofertas</a>
+        </div>
+        <div class="card">
+            <h2>Universo Literário</h2>
+            <div class="card-img" onclick="window.location.href='categoria-livros.html'">
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop" alt="Livros">
+            </div>
+            <a href="categoria-livros.html" class="card-link">Descobrir novos títulos</a>
+        </div>
+        <div class="card">
+            <h2>Casa Inteligente</h2>
+            <div class="card-img" onclick="window.location.href='casa-inteligente.html'">
+                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=400&auto=format&fit=crop" alt="Casa Inteligente">
+            </div>
+            <a href="casa-inteligente.html" class="card-link">Conhecer dispositivos</a>
+        </div>
+        <div class="card">
+            <h2>Casa & Decoração</h2>
+            <div class="card-img" onclick="window.location.href='categoria-casa.html'">
+                <img src="https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?q=80&w=400&auto=format&fit=crop" alt="Casa e Decoração">
+            </div>
+            <a href="categoria-casa.html" class="card-link">Transforme seu espaço</a>
+        </div>
+        <div class="card">
+            <h2>Estilo & Moda</h2>
+            <div class="card-img" onclick="window.location.href='categoria-moda.html'">
+                <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=400&auto=format&fit=crop" alt="Moda">
+            </div>
+            <a href="categoria-moda.html" class="card-link">Ver tendências</a>
+        </div>
+        <div class="card">
+            <h2>Horizonte Streaming</h2>
+            <div class="card-img" onclick="window.location.href='horizonte-streaming.html'">
+                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=400&auto=format&fit=crop" alt="Horizonte Streaming">
+            </div>
+            <a href="horizonte-streaming.html" class="card-link">Assinar agora</a>
+        </div>
+        <div class="card">
+            <h2>Diversão & Jogos</h2>
+            <div class="card-img" onclick="window.location.href='categoria-jogos.html'">
+                <img src="https://media.wired.com/photos/62feb60bcea7c0581e825cb0/master/pass/Fate-of-Game-Preservation-Games-GettyImages-1170073827.jpg" alt="Jogos">
+            </div>
+            <a href="categoria-jogos.html" class="card-link">Descobrir novidades</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            Voltar ao topo
+        </div>
+        <div class="footer-nav">
+            <div class="footer-col">
+                <h3>Sobre Nós</h3>
+                <ul>
+                    <li><a href="sobre.html">Nossa história</a></li>
+                    <li><a href="trabalhe-conosco.html">Trabalhe conosco</a></li>
+                    <li><a href="imprensa.html">Sala de imprensa</a></li>
+                    <li><a href="sustentabilidade.html">Sustentabilidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Parceiros</h3>
+                <ul>
+                    <li><a href="vender.html">Venda na Horizonte</a></li>
+                    <li><a href="programa-afiliados.html">Programa de afiliados</a></li>
+                    <li><a href="publicacao.html">Publique seu livro</a></li>
+                    <li><a href="desenvolvedores.html">Para desenvolvedores</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Ajuda & Suporte</h3>
+                <ul>
+                    <li><a href="central-ajuda.html">Central de ajuda</a></li>
+                    <li><a href="minha-conta.html">Minha conta</a></li>
+                    <li><a href="rastreamento.html">Rastreamento de pedidos</a></li>
+                    <li><a href="devolucoes.html">Trocas e devoluções</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Pagamentos</h3>
+                <ul>
+                    <li><a href="meios-pagamento.html">Formas de pagamento</a></li>
+                    <li><a href="parcelamento.html">Opções de parcelamento</a></li>
+                    <li><a href="horizonte-card.html">Cartão Horizonte</a></li>
+                    <li><a href="seguranca.html">Compra segura</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © Horizonte.com.br - 2025. Todos os direitos reservados. O lugar onde suas descobertas começam.
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

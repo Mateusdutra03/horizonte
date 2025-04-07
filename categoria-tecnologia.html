@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia & Inovação | Horizonte.com.br</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para a página de categoria */
+        .category-banner {
+            background-image: url('https://images.unsplash.com/photo-1478358161113-b0e11994a36b?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .category-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .category-banner-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .category-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .category-description {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .filter-options select {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .sort-options select {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+        
+        .product-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: white;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-category {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            height: 2.4em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            margin-right: 8px;
+        }
+        
+        .discount {
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .stars {
+            color: #f39c12;
+        }
+        
+        .review-count {
+            color: #666;
+            font-size: 0.8rem;
+        }
+        
+        .product-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            width: 100%;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .product-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            gap: 10px;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-belt">
+            <div class="logo">
+                <a href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="50" viewBox="0 0 240 100">
+                      <!-- Fundo gradiente -->
+                      <defs>
+                        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#3498db" />
+                          <stop offset="100%" style="stop-color:#2c3e50" />
+                        </linearGradient>
+                      </defs>
+                      
+                      <!-- Forma de horizonte montanhoso -->
+                      <path d="M20 70 L50 40 L80 60 L110 30 L140 50 L170 20 L220 70" 
+                            stroke="white" stroke-width="3" fill="none" />
+                      
+                      <!-- Sol estilizado -->
+                      <circle cx="170" cy="20" r="12" fill="#f39c12" />
+                      
+                      <!-- Texto do logo -->
+                      <text x="50" y="90" font-family="Montserrat, sans-serif" font-size="24" font-weight="700" fill="white">HORIZONTE</text>
+                      
+                      <!-- Background retângulo arredondado -->
+                      <rect x="5" y="5" width="230" height="90" rx="10" ry="10" fill="url(#bgGradient)" stroke="#2c3e50" stroke-width="2" opacity="0.3" z-index="-1" />
+                    </svg>
+                </a>
+            </div>
+            <div class="nav-search">
+                <select>
+                    <option>Todas Categorias</option>
+                </select>
+                <input type="text" placeholder="O que você está procurando hoje?">
+                <button>🔍</button>
+            </div>
+            <div class="nav-tools">
+                <div class="nav-item">
+                    <a href="login.html" class="nav-link">
+                        <span class="nav-line-1">Bem-vindo</span>
+                        <span class="nav-line-2">Entrar / Cadastrar</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="pedidos.html" class="nav-link">
+                        <span class="nav-line-1">Meus</span>
+                        <span class="nav-line-2">Pedidos</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="horizonte-plus.html" class="nav-link">
+                        <span class="nav-line-1">Assine</span>
+                        <span class="nav-line-2">Horizonte+</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="carrinho.html" class="nav-link">
+                        <span>🛒 Carrinho</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="subnav">
+            <a href="categorias.html">Categorias</a>
+            <a href="ofertas.html">Ofertas Exclusivas</a>
+            <a href="novidades.html">Novidades</a>
+            <a href="colecoes.html">Coleções</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="horizonte-plus.html">Horizonte+</a>
+        </div>
+    </header>
+
+    <!-- Category Banner -->
+    <div class="category-banner">
+        <div class="category-banner-content">
+            <h1 class="category-title">Tecnologia & Inovação</h1>
+            <p class="category-description">Descubra os lançamentos mais recentes e as últimas tendências em tecnologia. De smartphones a smart home, tudo o que você precisa para transformar sua vida digital.</p>
+        </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="filter-options">
+            <select>
+                <option>Todas as subcategorias</option>
+                <option>Smartphones</option>
+                <option>Notebooks</option>
+                <option>Tablets</option>
+                <option>Smart TVs</option>
+                <option>Áudio</option>
+                <option>Wearables</option>
+                <option>Acessórios</option>
+            </select>
+            <select>
+                <option>Todas as marcas</option>
+                <option>Apple</option>
+                <option>Samsung</option>
+                <option>Xiaomi</option>
+                <option>Sony</option>
+                <option>JBL</option>
+                <option>Dell</option>
+                <option>Lenovo</option>
+            </select>
+            <select>
+                <option>Faixa de preço</option>
+                <option>Até R$ 500</option>
+                <option>R$ 500 - R$ 1.000</option>
+                <option>R$ 1.000 - R$ 3.000</option>
+                <option>R$ 3.000 - R$ 5.000</option>
+                <option>Acima de R$ 5.000</option>
+            </select>
+        </div>
+        <div class="sort-options">
+            <select>
+                <option>Relevância</option>
+                <option>Menor preço</option>
+                <option>Maior preço</option>
+                <option>Mais vendidos</option>
+                <option>Mais recentes</option>
+                <option>Melhor avaliados</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid">
+        <!-- Produto 1 -->
+        <div class="product-card">
+            <a href="produto-smartphone-premium.html">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=600&auto=format&fit=crop" alt="Smartphone Premium X1">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Smartphones</div>
+                    <h3 class="product-title">Smartphone Premium X1 Ultra 256GB</h3>
+                    <div class="product-price">
+                        <span class="original-price">R$ 5.999,00</span>
+                        <span>R$ 4.899,00</span>
+                        <span class="discount">-18%</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(432)</span>
+                    </div>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </a>
+        </div>
+
+        <!-- Produto 2 -->
+        <div class="product-card">
+            <a href="produto-notebook-traveller.html">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=600&auto=format&fit=crop" alt="Notebook Traveller Pro">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Notebooks</div>
+                    <h3 class="product-title">Notebook Traveller Pro 15" i7 16GB</h3>
+                    <div class="product-price">
+                        <span class="original-price">R$ 7.499,00</span>
+                        <span>R$ 6.299,00</span>
+                        <span class="discount">-16%</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(278)</span>
+                    </div>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </a>
+        </div>
+
+        <!-- Produto 3 -->
+        <div class="product-card">
+            <a href="produto-smartwatch-fit.html">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=600&auto=format&fit=crop" alt="Smartwatch FitTracker">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Wearables</div>
+                    <h3 class="product-title">Smartwatch FitTracker Series 5</h3>
+                    <div class="product-price">
+                        <span class="original-price">R$ 1.299,00</span>
+                        <span>R$ 899,00</span>
+                        <span class="discount">-31%</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(512)</span>
+                    </div>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </a>
+        </div>
+
+        <!-- Produto 4 -->
+        <div class="product-card">
+            <a href="produto-fone-wireless.html">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?q=80&w=600&auto=format&fit=crop" alt="Fones Wireless Pro">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Áudio</div>
+                    <h3 class="product-title">Fones Wireless Pro com Cancelamento de Ruído</h3>
+                    <div class="product-price">
+                        <span class="original-price">R$ 899,00</span>
+                        <span>R$ 699,00</span>
+                        <span class="discount">-22%</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(345)</span>
+                    </div>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </a>
+        </div>
+
+        <!-- Produto 5 -->
+        <div class="product-card">
+            <a href="produto-tablet-pro.html">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=600&auto=format&fit=crop" alt="Tablet Pro M2">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Tablets</div>
+                    <h3 class="product-title">Tablet Pro M2 128GB com Wi-Fi+5G</h3>
+                    <div class="product-price">
+                        <span class="original-price">R$ 5.499,00</span>
+                        <span>R$ 4.799,00</span>
+                        <span class="discount">-13%</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(187)</span>
+                    </div>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </a>
+        </div>
+
+        <!-- Produto 6 -->
+        <div class="product-card">
+            <a href="produto-camera-action.html">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1520483601560-389ddf7c25ca?q=80&w=600&auto=format&fit=crop" alt="Câmera Action Pro">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Câmeras</div>
+                    <h3 class="product-title">Câmera Action Pro 4K Ultra HD</h3>
+                    <div class="product-price">
+                        <span class="original-price">R$ 2.399,00</span>
+                        <span>R$ 1.899,00</span>
+                        <span class="discount">-21%</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(142)</span>
+                    </div>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </a>
+        </div>
+
+        <!-- Produto 7 -->
+        <div class="product-card">
+            <a href="produto-drone-horizon.html">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1506947411487-a56738267384?q=80&w=600&auto=format&fit=crop" alt="Drone Horizon Elite">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Drones</div>
+                    <h3 class="product-title">Drone Horizon Elite com Câmera 4K</h3>
+                    <div class="product-price">
+                        <span class="original-price">R$ 4.999,00</span>
+                        <span>R$ 3.999,00</span>
+                        <span class="discount">-20%</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(76)</span>
+                    </div>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </a>
+        </div>
+
+        <!-- Produto 8 -->
+        <div class="product-card">
+            <a href="produto-speaker-bluetooth.html">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=600&auto=format&fit=crop" alt="Speaker Bluetooth Ultimate">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Áudio</div>
+                    <h3 class="product-title">Speaker Bluetooth Ultimate com Bateria de 20h</h3>
+                    <div class="product-price">
+                        <span class="original-price">R$ 799,00</span>
+                        <span>R$ 599,00</span>
+                        <span class="discount">-25%</span>
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(203)</span>
+                    </div>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">&raquo;</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            Voltar ao topo
+        </div>
+        <div class="footer-nav">
+            <div class="footer-col">
+                <h3>Sobre Nós</h3>
+                <ul>
+                    <li><a href="sobre.html">Nossa história</a></li>
+                    <li><a href="trabalhe-conosco.html">Trabalhe conosco</a></li>
+                    <li><a href="imprensa.html">Sala de imprensa</a></li>
+                    <li><a href="sustentabilidade.html">Sustentabilidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Parceiros</h3>
+                <ul>
+                    <li><a href="vender.html">Venda na Horizonte</a></li>
+                    <li><a href="programa-afiliados.html">Programa de afiliados</a></li>
+                    <li><a href="publicacao.html">Publique seu livro</a></li>
+                    <li><a href="desenvolvedores.html">Para desenvolvedores</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Ajuda & Suporte</h3>
+                <ul>
+                    <li><a href="central-ajuda.html">Central de ajuda</a></li>
+                    <li><a href="minha-conta.html">Minha conta</a></li>
+                    <li><a href="rastreamento.html">Rastreamento de pedidos</a></li>
+                    <li><a href="devolucoes.html">Trocas e devoluções</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Pagamentos</h3>
+                <ul>
+                    <li><a href="meios-pagamento.html">Formas de pagamento</a></li>
+                    <li><a href="parcelamento.html">Opções de parcelamento</a></li>
+                    <li><a href="horizonte-card.html">Cartão Horizonte</a></li>
+                    <li><a href="seguranca.html">Compra segura</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © Horizonte.com.br - 2025. Todos os direitos reservados. O lugar onde suas descobertas começam.
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
